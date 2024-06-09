@@ -240,74 +240,62 @@ ll count_setBits(ll a)
     return ans;
 }
 
-/*
+// void solve()
+// {
+//     ll n, f, k;
+//     cin >> n >> f >> k;
+//     vector<ll> arr(n);
+//     input(arr, n);
+//     ll cube_before_sorting = arr[f];
+//     sort(all(arr));
+//     reverse(all(arr));
+     
 
-standard output
-There is a sequence a0,a1,a2,…
- of infinite length. Initially ai=i
- for every non-negative integer i
-.
+//     ll first_k_cubes_removed = k;
+//     unordered_map<ll, ll> mp;
+//     for (ll i = 0; i < k; i++)
+//         mp[arr[i]]++;
+//     ll freq = mp[arr[f]];
+//     ll last_removed_number = arr[k];
+//     unordered_map<ll, ll> mp2;
+//     if (last_removed_number == cube_before_sorting)
+//     {
+//         for (int i = 0; i < k; i++)
+//             mp2[arr[i]]++;
+//         if (mp2[arr[f]] == mp[arr[f]])
+//             cout << "YES" << endl;
+//         else if (mp2[arr[f]] == 0)
+//             cout << "NO" << endl;
+//         else
+//             cout << "MAYBE" << endl;
+//     }
+// }
 
-After every second, each element of the sequence will simultaneously change. ai
- will change to ai−1∣ai∣ai+1
- for every positive integer i
-. a0
- will change to a0∣a1
-. Here, |
- denotes bitwise OR.
-
-Turtle is asked to find the value of an
- after m
- seconds. In particular, if m=0
-, then he needs to find the initial value of an
-. He is tired of calculating so many values, so please help him!
-
-Input
-Each test contains multiple test cases. The first line contains the number of test cases t
- (1≤t≤104
-). The description of the test cases follows.
-
-The first line of each test case contains two integers n,m
- (0≤n,m≤109
-).
-
-Output
-For each test case, output a single integer — the value of an
- after m
- seconds.
-
-*/
-
-void solve()
-{
-    ll n, m;
-    cin >> n >> m;
-    // at first calculating the nth element first position
- 
-    // after one second the value of nth element is (n-1)|n|(n+1)
-
-    if (m == 0)
-    {
-        cout << n << endl;
-        return;
+void solve() {
+    ll n, f, k;
+    cin >> n >> f >> k;
+    vector<ll> arr(n);
+    for (ll i = 0; i < n; ++i) {
+        cin >> arr[i];
     }
-    ll ans = 0;
-    
-    /*
-     to calculate the value of bit wise or from n-m to n+m in logn time
-    */
-    for (ll i = 0; i <= 30; i++)
-    {
-        if (check_bit(m, i))
-        {
-            ll x = (1 << i);
-            ans = ans | (n - x);
-            ans = ans | (n + x);
-        }
+
+    ll cube_before_sorting = arr[f - 1]; // index is 0-based
+
+    sort(arr.begin(), arr.end(), greater<ll>());
+
+    map<ll,ll>mp1,mp2;
+    ll first_k_cubes_removed = k;
+    ll number_of_cubes_present_prev = count(arr.begin(), arr.end(), cube_before_sorting);
+    ll number_of_cubes_present = count(arr.begin(), arr.begin() + k, cube_before_sorting); 
+
+    if(number_of_cubes_present == number_of_cubes_present_prev) {
+        cout << "YES" << endl;
+    } else if(number_of_cubes_present == 0) {
+        cout << "NO" << endl;
+    } else {
+        cout << "MAYBE" << endl;
     }
-    cout << ans << endl;
 }
-
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -323,12 +311,3 @@ int main()
 
     return 0;
 }
-
-/*
- bit wise number in 0 and 1 of the number 19198 is 100101100000110
- now making the last 10 numbers to 1 we get  100101111111111 
- the number for 100101111111111 is 
- can't we get 19455
-    100101111111111
-bit wise number in 0 and 1 of the number 19455 is 100101111111111
-*/

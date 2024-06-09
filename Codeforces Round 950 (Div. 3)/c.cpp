@@ -240,72 +240,14 @@ ll count_setBits(ll a)
     return ans;
 }
 
-/*
-
-standard output
-There is a sequence a0,a1,a2,…
- of infinite length. Initially ai=i
- for every non-negative integer i
-.
-
-After every second, each element of the sequence will simultaneously change. ai
- will change to ai−1∣ai∣ai+1
- for every positive integer i
-. a0
- will change to a0∣a1
-. Here, |
- denotes bitwise OR.
-
-Turtle is asked to find the value of an
- after m
- seconds. In particular, if m=0
-, then he needs to find the initial value of an
-. He is tired of calculating so many values, so please help him!
-
-Input
-Each test contains multiple test cases. The first line contains the number of test cases t
- (1≤t≤104
-). The description of the test cases follows.
-
-The first line of each test case contains two integers n,m
- (0≤n,m≤109
-).
-
-Output
-For each test case, output a single integer — the value of an
- after m
- seconds.
-
-*/
-
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
-    // at first calculating the nth element first position
- 
-    // after one second the value of nth element is (n-1)|n|(n+1)
-
-    if (m == 0)
-    {
-        cout << n << endl;
-        return;
-    }
-    ll ans = 0;
+   ll n,m;cin>>n>>m;
+    vector<ll> a(n),b(n),d(m);
+    for(auto &i:a)cin>>i;
+    for(auto &i:b)cin>>i;
+    for(auto &i:d)cin>>i;
     
-    /*
-     to calculate the value of bit wise or from n-m to n+m in logn time
-    */
-    for (ll i = 0; i <= 30; i++)
-    {
-        if (check_bit(m, i))
-        {
-            ll x = (1 << i);
-            ans = ans | (n - x);
-            ans = ans | (n + x);
-        }
-    }
-    cout << ans << endl;
 }
 
 int main()
@@ -323,12 +265,3 @@ int main()
 
     return 0;
 }
-
-/*
- bit wise number in 0 and 1 of the number 19198 is 100101100000110
- now making the last 10 numbers to 1 we get  100101111111111 
- the number for 100101111111111 is 
- can't we get 19455
-    100101111111111
-bit wise number in 0 and 1 of the number 19455 is 100101111111111
-*/
