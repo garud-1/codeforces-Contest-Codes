@@ -181,32 +181,9 @@
  }
  
  
-    ll LCM(vector<ll> a){
-        ll n = a.size();
-        ll ans = a[0];
-        for(ll i=1;i<n;i++){
-            ans = (ans*a[i])/__gcd(ans,a[i]);
-        }
-        return ans;
-    }
  
  void solve(){
-        ll n;cin>>n;
-        vector<ll> a(n); for(ll i=0;i<n;i++) cin>>a[i];
-        ll sum = 0;
-        ll lcm = LCM(a);
-        for(ll i=0;i<n;i++){
-            sum += (lcm/a[i]);
-        }
-        //  cout<<lcm<<" "<<sum<<endl;
-        if(lcm <= sum ) cout<< -1<<endl;
-        else{
-            for(auto i : a){
-                cout << lcm/i << " ";
-            }
-            cout<<endl;
-        }
-
+        
  }
  
  int main()
@@ -224,9 +201,3 @@
  
      return 0;
  }
-
- /*
-   explain the code 
-
-   
- */
