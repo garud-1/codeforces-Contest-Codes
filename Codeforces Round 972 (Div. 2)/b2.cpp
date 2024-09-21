@@ -181,21 +181,32 @@ ll count_setBits(ll a)
     return ans;
 }
 
+int solve(int n, const vi & v ,int pos){
+    if(pos < v[0]){
+        return v[0] -1;
+    }
+    else if(pos > v.back()){
+        return n - v.back();
+    }
+    else{
+        auto i = upper_bound(all(v),pos);
+        auto p = i-1;
+        int mid = (*i + *p)/2;
+        return min(abs(mid - *i),abs(mid - *p));
+    }
+
+}
 void Akshay()
 {
-  int m,p;cin>>m>>p; 
-  int available_time = 299 - m;  // Time available for wrong submissions and correct submission
-    int res = 0;
-    
-    for (int W = 0; W <= available_time; ++W) {
-        if (p + 20 * W + 299 <= 1000) {
-            res = W;
-        } else {
-            break;
-        }
-    }
-    
-    cout<< res<<endl;
+   int n,m,q;cin>>n>>m>>q;
+   vi v(m,0);rep(i,0,m) cin>>v[i];
+   vi vm(q,0); rep(i,0,q) cin>>vm[i];
+   sort(all(v));
+   for(int i=0;i<q;i++){
+     int result = solve(n,v,vm[i]);
+     cout<<result<<endl;
+   }   
+   
 }
 
 int32_t main()

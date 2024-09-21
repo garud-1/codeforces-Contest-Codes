@@ -1,8 +1,7 @@
 /*
-  BY AKSHAY SURESH WALE 
+  BY AKSHAY SURESH WALE
   Linkedin : https://www.linkedin.com/in/akshay-wale-28b20a257/
 */
-
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -182,35 +181,26 @@ ll count_setBits(ll a)
 }
 
 void Akshay()
-{ 
-    string s;
+{  long long n, m, q;
+    cin >> n >> m >> q;
+
+    long long t1, t2;
+    cin >> t1 >> t2;
+
+    long long s;
     cin >> s;
     
-    int n = s.size();
-    bool flag = true;
-    rep(i,1,n){
-        if(s[i] == s[i-1]){
-            flag = false;
-            char c = s[i];
-            if(c=='a'){
-                s.insert(s.begin()+i,'b');
-            }
-            else{
-                s.insert(s.begin()+i,c-1);
-            }
-            break;
-        }
+    if(s< min(t1,t2)) {
+        cout<<min(t1,t2)-1<<endl;
     }
-    if(flag){
-        if(s[0] == 'a'){
-            s.insert(s.begin(),'b');
-        }
-        else{
-            s.insert(s.begin(),s[0]-1);
-        }
+    else if(s > max(t1,t2)){
+        cout<< n - max(t1,t2)<<endl;
     }
-    cout << s << endl;
-
+    else{
+        int mid = (t1+t2)/2;
+        cout<<min(abs(mid-t1),abs(mid-t2))<<endl;
+    }
+    
 }
 
 int32_t main()
@@ -225,7 +215,7 @@ int32_t main()
     cin >> t;
 
     while (t--)
-    {   
+    {
         Akshay();
     }
 

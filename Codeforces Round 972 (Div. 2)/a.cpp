@@ -182,42 +182,17 @@ ll count_setBits(ll a)
 }
 
 void Akshay()
-{   int n;cin>>n;
-    string s;cin>>s;
-    string p;cin>>p;
-    vector<vector<char>>v;
-    vector<char>temp;
-    // int n = s.size();
-    rep(i,0,n) temp.pb(s[i]);
-    v.pb(temp);
-    temp.clear();
-    rep(i,0,n) temp.pb(p[i]);
-    v.pb(temp);
+{
+    int n;cin>>n;
+    string s;
+    string t = "aeiou";
 
-
-    int dot_cnt =0 , cnt=0;
-    rep(i,0,2){
-        rep(j,0,n){
-            if(v[i][j]=='.') dot_cnt++;
-            if(v[i][j]=='*') cnt++;
-        }
+    for(int i=0;i<n;i++){
+        s+=t[i%5];
     }
-    if(dot_cnt==0 && cnt==0){
-        cout<<0<<"\n";
-        return;
-    }
-       cnt =0;
+    sort(all(s));
+    cout<<s<<endl;
     
-        for(int j=0;j<n;++j){
-            if(v[0][j] == '.'  and v[1][j] == '.'){
-                bool flag1 = ((j>0 and v[0][j-1] == '.') or (j<n-1 and v[0][j+1] == '.'));
-                bool flag2 = ((j>0 and v[1][j-1] == '.') or (j<n-1 and v[1][j+1] == '.'));
-                if(flag1 and flag2){
-                    cnt++;
-                }
-            }
-        }
-        cout<<cnt<<endl;
     
 }
 

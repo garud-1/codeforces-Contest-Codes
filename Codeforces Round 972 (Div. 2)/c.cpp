@@ -1,8 +1,7 @@
 /*
-  BY AKSHAY SURESH WALE 
+  BY AKSHAY SURESH WALE
   Linkedin : https://www.linkedin.com/in/akshay-wale-28b20a257/
 */
-
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -183,19 +182,33 @@ ll count_setBits(ll a)
 
 void Akshay()
 {
-  int m,p;cin>>m>>p; 
-  int available_time = 299 - m;  // Time available for wrong submissions and correct submission
-    int res = 0;
-    
-    for (int W = 0; W <= available_time; ++W) {
-        if (p + 20 * W + 299 <= 1000) {
-            res = W;
-        } else {
-            break;
+    int n, m;
+    cin >> n >> m;
+    vector<string> v(n);
+    rep(i, 0, n) cin >> v[i];
+    string s = "narek";
+    vector<vector<int>> dp(n, vector<int>(5, -1));
+    auto f = [&](int index, int letter, auto &&fun) -> int
+    {
+        if (index == n)
+            return -2 * letter;
+        if (dp[index][letter] != -1)
+            return dp[index][letter];
+
+        int nontake = fun(index + 1, letter, fun);
+        int take = 0, ind = letter;
+
+        for (auto i : v[index])
+        {
+            if (i == s[ind])
+                ind = (ind + 1) % 5, take++;
+            else if (i == 'n' or i == 'a' or i == 'r' or i == 'e' or i == 'k')
+                take--;
         }
-    }
-    
-    cout<< res<<endl;
+        take += fun(index + 1, ind, fun);
+        return dp[index][letter] = max(take, nontake);
+    };
+    cout << f(0, 0, f) << endl;
 }
 
 int32_t main()
@@ -210,7 +223,7 @@ int32_t main()
     cin >> t;
 
     while (t--)
-    {   
+    {
         Akshay();
     }
 

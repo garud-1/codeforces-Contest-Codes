@@ -183,19 +183,7 @@ ll count_setBits(ll a)
 
 void Akshay()
 {
-  int m,p;cin>>m>>p; 
-  int available_time = 299 - m;  // Time available for wrong submissions and correct submission
-    int res = 0;
     
-    for (int W = 0; W <= available_time; ++W) {
-        if (p + 20 * W + 299 <= 1000) {
-            res = W;
-        } else {
-            break;
-        }
-    }
-    
-    cout<< res<<endl;
 }
 
 int32_t main()
