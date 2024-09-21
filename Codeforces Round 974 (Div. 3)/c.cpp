@@ -182,26 +182,47 @@ ll count_setBits(ll a)
 
 void Akshay()
 {
-  ll n, k;
-    cin >> n >> k;
-
-    ll start = n - k + 1;
-
-    ll first_odd = (start % 2 == 0) ? start + 1 : start;
- 
-    ll last_odd = (n % 2 == 0) ? n - 1 : n;
-
-    ll odd = 0;
-    if (first_odd <= last_odd) {
-        odd = ((last_odd - first_odd) / 2) + 1;
+    ll n;
+    cin >> n;
+    vi v(n);
+    rep(i, 0, n) cin >> v[i];
+    sort(all(v));
+    if (n <= 2)
+    {
+        cout << -1 << endl;
+        return;
     }
+    ll sum = accumulate(all(v), 0ll);
+    //   int avg = floor(sum/(2*n));
+    int cnt = 0, maxi = INT_MIN, require = 0;
+    rep(i, 0, n-1)
+    {
+        int ans = v[i] * 2 * n + 1 - sum;
+        require++;
+        if (ans <= 0)
+        {
+            ans = 0;
 
-    ll even = k - odd;
- 
-    if (odd % 2 == 0)
-        cout << "Yes" << endl;
-    else
-        cout << "NO" << endl;
+            cnt++;
+            if (cnt >= ((n / 2) + 1))
+            {
+                cout << 0 << endl;
+                return;
+            }
+            maxi = max(maxi, ans);
+        }
+        else
+        {
+
+            if (require >= ((n / 2) + 1))
+            {
+                maxi = max(maxi, ans);
+                cout << maxi << endl;
+                return;
+            }
+        }
+    }
+    cout<<-1<<endl;
 }
 
 int32_t main()

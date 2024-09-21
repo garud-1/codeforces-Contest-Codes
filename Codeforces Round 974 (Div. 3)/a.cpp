@@ -183,7 +183,21 @@ ll count_setBits(ll a)
 
 void Akshay()
 {
-    
+  int n,k;cin>>n>>k;
+  vi v(n); rep(i,0,n) cin>>v[i];
+  int cnt  =0 , gold =0;    
+  rep(i,0,n){
+    if(v[i] >=k ) gold += v[i];
+    if(v[i] == 0) {
+        if(gold > 0) {
+            gold--;
+            cnt++;
+        }
+       
+    }
+  }
+    cout<<cnt<<endl;
+  
 }
 
 int32_t main()
